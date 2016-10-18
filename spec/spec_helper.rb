@@ -15,6 +15,17 @@
 # The `.rspec` file also contains a few flags that are not defaults but that
 # users commonly want.
 #
+
+def create_user name='kobe', email='kobe@lakers.com', password='password', password_confirmation='password'
+  User.create(name: name, email: email, password: password, password_confirmation: password_confirmation)
+end
+def log_in user, password='password'
+  visit '/sessions/new'
+  fill_in 'Email', with: user.email
+  fill_in 'Password', with: password
+  click_button 'Log In'
+end
+
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

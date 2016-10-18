@@ -1,0 +1,21 @@
+<%= form_for @user do |f| %>
+    <h1>New User:</h1>
+
+
+    <% if flash[:error] %>
+        <p>Validation errors:
+        <% flash[:error].each do |e| %>
+            <ul>
+              <li><%= e %></li>
+            </ul>
+            </p>
+        <% end %>
+
+    <% end %>
+
+    <label for="name">Name: <%= f.text_field :name %></label> <br>
+    <label for="email">Email: <%= f.text_field :email %> </label><br>
+    <label for="password">Password: <%= f.text_field :password %> </label><br>
+    <label for="password_confirmation">Password confirmation:<%= f.text_field :password_confirmation %> </label><br>
+    <%= f.submit %>
+<% end %>
