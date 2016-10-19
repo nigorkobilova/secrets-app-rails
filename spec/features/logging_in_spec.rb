@@ -4,7 +4,7 @@ RSpec.describe 'logging in' do
     @user = create(:user)
   end
   it 'prompts for email and password' do
-    visit '/sessions/new'
+    visit '/session/new'
     expect(page).to have_field('Email')
     expect(page).to have_field('Password')
   end

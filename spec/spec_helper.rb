@@ -20,7 +20,7 @@ def create_user name='kobe', email='kobe@lakers.com', password='password', passw
   User.create(name: name, email: email, password: password, password_confirmation: password_confirmation)
 end
 def log_in user, password='password'
-  visit '/sessions/new'
+  visit new_session_path
   fill_in 'Email', with: user.email
   fill_in 'Password', with: password
   click_button 'Log In'

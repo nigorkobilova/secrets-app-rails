@@ -1,2 +1,20 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<%= form_for @user do |f| %>
+    <h1>Edit User <%= @user.name %></h1>
+
+
+    <% if flash[:error] %>
+        <p>Validation errors:
+          <% flash[:error].each do |e| %>
+            <ul>
+              <li><%= e %></li>
+            </ul>
+        <% end %>
+        </p>
+    <% end %>
+
+    <label for="name">Name: <%= f.text_field :name %></label> <br>
+    <label for="email">Email: <%= f.text_field :email %> </label><br>
+    <%= f.submit %>
+<% end %>
+
+<%= link_to "Delete Account", user_path(@user.id), method: :delete %>

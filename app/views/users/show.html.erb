@@ -1,2 +1,19 @@
 <h1><%= @user.name %></h1>
 <%= link_to "Edit Profile", edit_user_path(@user.id) %>
+
+<h2>Secrets</h2>
+<%= form_for @user.secrets.new do |f| %>
+    <h3>New Secret</h3>
+    <%= f.text_area :content %>
+    <%= f.hidden_field :user_id %>
+    <%= f.submit "Create Secret" %>
+<% end %>
+
+<% @user.secrets.each do |secret| %>
+<div class="secret">
+  <% if secret.id %>
+      <%= secret.content %>
+      <%= link_to "Delete", secret_path(id:  secret ), method: :delete %>
+  <% end %>
+</div>
+<% end %>
