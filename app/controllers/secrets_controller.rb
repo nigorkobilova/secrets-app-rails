@@ -13,9 +13,9 @@ class SecretsController < ApplicationController
   end
 
   def destroy
-    @user = User.find(session[:user_id])
-    if Secret.find(params[:id]).destroy
-      redirect_to @user
+    secret = Secret.find(params[:id])
+    if secret.user == current_user and Secret.find(params[:id]).destroy
+      redirect_to current_user
     else
       redirect_to :back, alert: "Secret could not be deleted"
     end
