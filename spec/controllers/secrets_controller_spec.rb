@@ -1,26 +1,23 @@
 require 'rails_helper'
-RSpec.describe UsersController, type: :controller do
+RSpec.describe SecretsController, type: :controller do
   before do
     @user = create_user
+    @secret = @user.secrets.create(content: "secret")
   end
   describe "when not logged in" do
     before do
       session[:user_id] = nil
     end
-    it "cannot access show" do
-      get :show, id: @user
+    it "cannot access index" do
+      get :index
       expect(response).to redirect_to('/sessions/new')
     end
-    it "cannot access edit" do
-      get :edit, id: @user
-      expect(response).to redirect_to('/sessions/new')
-    end
-    it "cannot access update" do
-      patch :update, id: @user
+    it "cannot access create" do
+      post :create
       expect(response).to redirect_to('/sessions/new')
     end
     it "cannot access destroy" do
-      delete :destroy, id: @user
+      delete :destroy, id: @secret
       expect(response).to redirect_to('/sessions/new')
     end
   end
