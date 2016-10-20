@@ -15,7 +15,7 @@
 # gem 'pg'
 #
 default: &default
-  adapter: postgresql
+  adapter: postgresqlg
   encoding: unicode
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: secrets-app_production
-  username: secrets-app
+  username: ubuntu
   password: <%= ENV['SECRETS-APP_DATABASE_PASSWORD'] %>
