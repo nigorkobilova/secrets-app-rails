@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   resource :session, only: [:create, :new, :destroy]
   resources :users
-  resources :secrets, only: [:index, :create, :destroy]
+  resources :secrets, only: [:index, :create, :destroy] do
+    resources :likes, only: [:create, :destroy]
+  end
   root 'sessions#new'
 
   # The priority is based upon order of creation: first created -> highest priority.

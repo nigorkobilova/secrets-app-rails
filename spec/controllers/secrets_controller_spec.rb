@@ -1,7 +1,7 @@
 require 'rails_helper'
 RSpec.describe SecretsController, type: :controller do
   before do
-    @user = create_user
+    @user = create(:user)
     @secret = @user.secrets.create(content: "secret")
   end
   describe "when not logged in" do

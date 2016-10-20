@@ -22,6 +22,6 @@ class SecretsController < ApplicationController
   end
   private
     def secret_params
-      params.require(:secret).permit(:content, :user_id)
+      params.require(:secret).permit(:content).merge(user: current_user)
     end
 end

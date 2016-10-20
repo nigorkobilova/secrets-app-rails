@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   has_many :likes, dependent: :destroy
   has_many :secrets_liked, through: :likes, source: :secret
 
-  before_save do
+  before_validation do
     self.email.downcase! if self.email
   end
 

@@ -5,6 +5,6 @@ RSpec.describe 'deleting account' do
     log_in user
     click_link 'Edit Profile'
     click_link 'Delete Account'
-    expect(current_path).to eq('/sessions/new')
+    expect(current_path).to eq('/session/new')
   end
 end

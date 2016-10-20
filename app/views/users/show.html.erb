@@ -2,18 +2,24 @@
 <%= link_to "Edit Profile", edit_user_path(@user.id) %>
 
 <h2>Secrets</h2>
-<%= form_for @user.secrets.new do |f| %>
+<%= form_for @secret do |f| %>
     <h3>New Secret</h3>
     <%= f.text_area :content %>
-    <%= f.hidden_field :user_id %>
     <%= f.submit "Create Secret" %>
 <% end %>
 
 <% @user.secrets.each do |secret| %>
-<div class="secret">
-  <% if secret.id %>
-      <%= secret.content %>
-      <%= link_to "Delete", secret_path(id:  secret ), method: :delete %>
-  <% end %>
-</div>
+
+    <div class="secret">
+      <p><%= secret.content %></p>
+      <p><%= secret.likes.count %> likes</p>
+      <% unless secret.likes.any? { |s| s.user_id == current_user.id } %>
+          <%= link_to "Like", secret_likes_path(secret), method: :post %>
+      <% else %>
+          <%= link_to "Unlike", secret_like_path(secret, Like.where(secret: secret, user: current_user).first), method: :delete %>
+      <% end %>
+
+      <%= link_to "Delete", secret_path(secret), method: :delete if current_user == secret.user %>
+    </div>
+
 <% end %>
